@@ -14,7 +14,9 @@ Object.keys(baseWebpackConfig.entry).forEach(name => {
 
 module.exports = merge(baseWebpackConfig, {
   module: {
-    loaders: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap })
+    loaders: utils.styleLoaders({
+      sourceMap: config.dev.cssSourceMap
+    })
   },
   // eval-source-map is faster for development
   devtool: '#eval-source-map',
@@ -32,11 +34,11 @@ module.exports = merge(baseWebpackConfig, {
     }),
     // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
-      title: 'Vue Admin',
+      title: 'CISTER Dashboard',
       filename: 'index.html',
       template: 'index.html',
       inject: true,
-      favicon: 'client/assets/logo.png'
+      favicon: 'client/assets/favicon.ico'
     })
   ]
 })

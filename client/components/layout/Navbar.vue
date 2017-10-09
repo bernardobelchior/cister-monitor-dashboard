@@ -9,17 +9,13 @@
         </div>
         <div class="nav-center">
           <a class="nav-item hero-brand" href="/">
-            <img src="~assets/logo.svg" :alt="pkginfo.description">
-            <tooltip :label="'v' + pkginfo.version" placement="right" type="success" size="small" :no-animate="true" :always="true" :rounded="true">
-              <div class="is-hidden-mobile">
-                <span class="vue">Vue</span><strong class="admin">Admin</strong>
-              </div>
+            <div class="is-hidden-mobile">
+              <strong class="admin">CISTER Dashboard</strong>
+            </div>
             </tooltip>
           </a>
         </div>
         <div class="nav-right is-flex">
-          <router-link v-if="!$auth.check()" to="/login" class="nav-item">Login</router-link>
-          <a v-if="$auth.check()" @click="logout" class="nav-item">Logout</a>
         </div>
       </nav>
     </div>
@@ -48,17 +44,7 @@ export default {
   methods: {
     ...mapActions([
       'toggleSidebar'
-    ]),
-    logout () {
-      this.$auth.logout({
-        redirect: 'Home',
-        makeRequest: false
-        // params: {},
-        // success: function () {},
-        // error: function () {},
-        // etc...
-      })
-    }
+    ])
   }
 }
 </script>

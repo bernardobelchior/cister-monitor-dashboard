@@ -6,17 +6,13 @@ Vue.use(Router)
 export default new Router({
   mode: 'hash', // Demo is living in GitHub.io, so required!
   linkActiveClass: 'is-active',
-  scrollBehavior: () => ({ y: 0 }),
-  routes: [
-    {
+  scrollBehavior: () => ({
+    y: 0
+  }),
+  routes: [{
       name: 'Home',
       path: '/',
-      component: require('../views/Home')
-    },
-    {
-      name: 'Login',
-      path: '/login',
-      component: require('../views/auth/Login')
+      component: require('../views/dashboard/index')
     },
     ...generateRoutesFromMenu(menuModule.state.items),
     {
@@ -27,7 +23,7 @@ export default new Router({
 })
 
 // Menu should have 2 levels.
-function generateRoutesFromMenu (menu = [], routes = []) {
+function generateRoutesFromMenu(menu = [], routes = []) {
   for (let i = 0, l = menu.length; i < l; i++) {
     let item = menu[i]
     if (item.path) {

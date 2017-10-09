@@ -7,8 +7,7 @@ export default {
     expanded: false
   },
 
-  children: [
-    {
+  children: [{
       name: 'BasicTables',
       path: '/tables/basic',
       meta: {
@@ -16,6 +15,15 @@ export default {
         link: 'tables/Basic.vue'
       },
       component: lazyLoading('tables/Basic')
+    },
+    {
+      name: 'Most Recent Measurements',
+      path: '/tables/measurements',
+      meta: {
+        label: 'Measurements',
+        link: 'tables/Measurements.vue'
+      },
+      component: lazyLoading('tables/Measurements')
     }
   ]
 }

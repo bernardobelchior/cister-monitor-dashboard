@@ -19,9 +19,8 @@ module.exports = {
   },
   output: {
     path: config.build.assetsRoot,
-    publicPath: process.env.NODE_ENV === 'production'
-      ? config.build.assetsPublicPath
-      : config.dev.assetsPublicPath,
+    publicPath: process.env.NODE_ENV === 'production' ?
+      config.build.assetsPublicPath : config.dev.assetsPublicPath,
     filename: '[name].js'
   },
   resolve: {
@@ -41,8 +40,7 @@ module.exports = {
     }
   },
   module: {
-    loaders: [
-      {
+    loaders: [{
         test: /\.(js|vue)$/,
         loader: 'eslint-loader',
         include: projectRoot,
@@ -85,5 +83,11 @@ module.exports = {
   // See https://github.com/webpack/webpack/issues/3486
   performance: {
     hints: false
+  },
+  node: {
+    console: true,
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty'
   }
 }
