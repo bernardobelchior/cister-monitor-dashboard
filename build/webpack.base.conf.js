@@ -86,6 +86,7 @@ module.exports = {
   },
   node: {
     console: true,
+    process: true,
     fs: 'empty',
     net: 'empty',
     tls: 'empty'

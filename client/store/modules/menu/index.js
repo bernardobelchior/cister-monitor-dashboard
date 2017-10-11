@@ -10,10 +10,9 @@ import tables from './tables'
 // meta.label: display label
 
 const state = {
-  items: [
-    {
+  items: [{
       name: 'Dashboard',
-      path: '/dashboard',
+      path: '/',
       meta: {
         icon: 'fa-tachometer',
         link: 'dashboard/index.vue'
@@ -33,12 +32,21 @@ const state = {
     charts,
     uifeatures,
     components,
+    {
+      name: 'Rooms',
+      path: '/rooms',
+      meta: {
+        icon: 'fa-building-o',
+        link: 'rooms/index.vue'
+      },
+      component: lazyLoading('rooms', true)
+    },
     tables
   ]
 }
 
 const mutations = {
-  [types.EXPAND_MENU] (state, menuItem) {
+  [types.EXPAND_MENU](state, menuItem) {
     if (menuItem.index > -1) {
       if (state.items[menuItem.index] && state.items[menuItem.index].meta) {
         state.items[menuItem.index].meta.expanded = menuItem.expanded

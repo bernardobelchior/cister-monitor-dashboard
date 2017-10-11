@@ -27,7 +27,7 @@
               <tr v-for="measurement in measurements" v-bind:key="measurement.id">
                 <td>{{measurement.id}}</td>
                 <td>{{measurement.mote_id}}</td>
-                <td>{{measurement.time_stamp}}</td>
+                <td>{{measurement.date}}</td>
                 <td>{{measurement.temperature}}ºC</td>
                 <td>{{measurement.humidity}} %</td>
               </tr>
@@ -50,10 +50,13 @@ export default {
   mounted() {
     let self = this
     request({
-      url: 'http://localhost:3000/measurements/10',
+      url: process.env.HOST_URL + '/measurements/10',
       method: 'GET'
     }, function(error, response, body) {
       self.measurements = JSON.parse(body).results
+      for (let measurement in self.measurements) {
+        measurement.date = new Date(measurement.time_stamp).toLocaleTimeString()
+      }
     })
   }
 }

@@ -9,11 +9,7 @@ export default new Router({
   scrollBehavior: () => ({
     y: 0
   }),
-  routes: [{
-      name: 'Home',
-      path: '/',
-      component: require('../views/dashboard/index')
-    },
+  routes: [
     ...generateRoutesFromMenu(menuModule.state.items),
     {
       path: '*',
