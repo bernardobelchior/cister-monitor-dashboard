@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import menuModule from 'vuex-store/modules/menu'
+import Room from '../views/rooms/Room'
+import Floor from '../views/floors/Floor'
 Vue.use(Router)
 
 export default new Router({
@@ -14,7 +16,19 @@ export default new Router({
     {
       path: '*',
       redirect: '/'
+    },
+    {
+      name: 'Room',
+      path: '/room/:id',
+      component: Room,
+      props: true
+    }, {
+      name: 'Floor',
+      path: '/floor/:id',
+      component: Floor,
+      props: true
     }
+
   ]
 })
 

@@ -2,13 +2,13 @@
   <div class="components">
     <div class="columns is-multiline is-mobile">
 
-      <div class="column is-half-mobile is-one-third-tablet is-one-third-desktop" v-for="room in rooms" v-bind:key="room.id">
-        <base-card :title="room.name" :content="'Floor: ' + room.floor_id">
+      <div class="column is-half-mobile is-one-third-tablet is-one-third-desktop" v-for="floor in floors" v-bind:key="floor.id">
+        <base-card :title="'Floor ' + floor.floor_no" :content="'Floor: ' + floor.floor_no">
           <card-footer-item slot="footer">
-            <router-link :to="{name: 'Room', params: {id: room.id}}">
+            <router-link :to="{name: 'Floor', params: {id: floor.id}}">
               <span class="icon is-small">
-                <i aria-hidden="true" class="fa fa-link"></i>
-              </span>&nbsp;&nbsp; Statistics
+                <i aria-hidden="true" class="fa fa-map"></i>
+              </span>&nbsp;&nbsp; Map
             </router-link>
           </card-footer-item>
         </base-card>
@@ -29,17 +29,17 @@ export default {
   },
   data() {
     return {
-      rooms: []
+      floors: []
     }
   },
   mounted() {
     let self = this
 
     request({
-      url: process.env.HOST_URL + '/rooms',
+      url: process.env.HOST_URL + '/floors',
       method: 'GET'
     }, function(error, response, body) {
-      self.rooms = JSON.parse(body).results
+      self.floors = JSON.parse(body).results
     })
   }
 }

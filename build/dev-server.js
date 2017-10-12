@@ -8,9 +8,9 @@ const webpack = require('webpack')
 const opn = require('opn')
 const config = require('../config')
 const proxyMiddleware = require('http-proxy-middleware')
-const webpackConfig = process.env.NODE_ENV === 'testing'
-  ? require('./webpack.prod.conf')
-  : require('./webpack.dev.conf')
+const webpackConfig = process.env.NODE_ENV === 'testing' ?
+  require('./webpack.prod.conf') :
+  require('./webpack.dev.conf')
 
 // default port where dev server listens for incoming traffic
 const port = process.env.PORT || config.dev.port
@@ -35,7 +35,9 @@ const hotMiddleware = require('webpack-hot-middleware')(compiler)
 // force page reload when html-webpack-plugin template changes
 compiler.plugin('compilation', compilation => {
   compilation.plugin('html-webpack-plugin-after-emit', (data, cb) => {
-    hotMiddleware.publish({ action: 'reload' })
+    hotMiddleware.publish({
+      action: 'reload'
+    })
     cb()
   })
 })
@@ -44,7 +46,9 @@ compiler.plugin('compilation', compilation => {
 Object.keys(proxyTable).forEach(context => {
   let options = proxyTable[context]
   if (typeof options === 'string') {
-    options = { target: options }
+    options = {
+      target: options
+    }
   }
   app.use(proxyMiddleware(options.filter || context, options))
 })

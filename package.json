@@ -41,6 +41,7 @@
     "font-awesome": "4.7.0",
     "http": "0.0.0",
     "mdi": "^1.8.36",
+    "openlayers": "^4.4.1",
     "plotly.js": "^1.24.2",
     "vue": "^2.2.2",
     "vue-axios": "^2.0.1",

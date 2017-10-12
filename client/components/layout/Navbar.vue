@@ -10,6 +10,7 @@
         <div class="nav-center">
           <a class="nav-item hero-brand" href="/">
             <div class="is-hidden-mobile">
+              <img class="logo" src="../../assets/logo.png">
               <strong class="admin">CISTER Dashboard</strong>
             </div>
             </tooltip>
@@ -74,11 +75,13 @@ export default {
 }
 
 .hero-brand {
-  .vue {
+  .logo {
+    vertical-align: middle;
     margin-left: 10px;
     color: #36AC70;
   }
   .admin {
+    font-size: 1.2;
     color: #28374B;
   }
 }

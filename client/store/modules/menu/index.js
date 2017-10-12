@@ -20,6 +20,33 @@ const state = {
       component: lazyLoading('dashboard', true)
     },
     {
+      name: 'Floors',
+      path: '/floors',
+      meta: {
+        icon: 'fa-building-o',
+        link: 'floors/index.vue'
+      },
+      component: lazyLoading('floors', true)
+    },
+    {
+      name: 'Rooms',
+      path: '/rooms',
+      meta: {
+        icon: 'fa-suitcase',
+        link: 'rooms/index.vue'
+      },
+      component: lazyLoading('rooms', true)
+    },
+    {
+      name: 'Measurements',
+      path: '/measurements',
+      meta: {
+        icon: 'fa-table',
+        link: 'measurements/index.vue'
+      },
+      component: lazyLoading('measurements', true)
+    },
+    {
       name: 'Axios',
       path: '/axiosDemo',
       meta: {
@@ -32,15 +59,6 @@ const state = {
     charts,
     uifeatures,
     components,
-    {
-      name: 'Rooms',
-      path: '/rooms',
-      meta: {
-        icon: 'fa-building-o',
-        link: 'rooms/index.vue'
-      },
-      component: lazyLoading('rooms', true)
-    },
     tables
   ]
 }
