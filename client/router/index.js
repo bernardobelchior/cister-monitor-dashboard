@@ -28,7 +28,6 @@ export default new Router({
       component: Floor,
       props: true
     }
-
   ]
 })
 

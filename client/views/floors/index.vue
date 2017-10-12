@@ -5,7 +5,7 @@
       <div class="column is-half-mobile is-one-third-tablet is-one-third-desktop" v-for="floor in floors" v-bind:key="floor.id">
         <base-card :title="'Floor ' + floor.floor_no" :content="'Floor: ' + floor.floor_no">
           <card-footer-item slot="footer">
-            <router-link :to="{name: 'Floor', params: {id: floor.id}}">
+            <router-link :to="{name: 'Floor', params: { id: floor.id }}">
               <span class="icon is-small">
                 <i aria-hidden="true" class="fa fa-map"></i>
               </span>&nbsp;&nbsp; Map
@@ -19,7 +19,6 @@
 </template>
 
 <script>
-var request = require('request')
 import { BaseCard, CardFooterItem } from 'vue-bulma-card'
 
 export default {
@@ -27,20 +26,13 @@ export default {
     BaseCard,
     CardFooterItem
   },
-  data() {
-    return {
-      floors: []
+  computed: {
+    floors() {
+      return this.$store.getters.floors
     }
   },
-  mounted() {
-    let self = this
-
-    request({
-      url: process.env.HOST_URL + '/floors',
-      method: 'GET'
-    }, function(error, response, body) {
-      self.floors = JSON.parse(body).results
-    })
+  created() {
+    this.$store.dispatch('fetchFloors')
   }
 }
 </script>

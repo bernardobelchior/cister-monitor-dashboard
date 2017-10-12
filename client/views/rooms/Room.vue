@@ -58,9 +58,6 @@ export default {
     props: {
         id: Number
     },
-    mounted() {
-        console.log(this.id)
-    },
     data() {
         return {
             series: [
