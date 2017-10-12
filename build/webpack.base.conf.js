@@ -61,6 +61,12 @@ module.exports = {
         include: projectRoot,
         // /node_modules\/(?!vue-bulma-.*)/
         exclude: [new RegExp(`node_modules\\${path.sep}(?!vue-bulma-.*)`)]
+      }, {
+        test: /\.geojson$/,
+        loader: 'url-loader',
+        query: {
+          name: utils.assetsPath('geojson/[name].[hash:7].[ext]')
+        }
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,

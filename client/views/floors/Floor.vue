@@ -18,11 +18,11 @@ export default {
     mounted() {
         var imageExtent = [0, 0, 1259, 404]
 
-        new ol.Map({
+        var map = new ol.Map({
             layers: [
                 new ol.layer.Image({
                     source: new ol.source.ImageStatic({
-                        url: require('../../assets/floor' + this.id + '.png'),
+                        url: require('../../assets/floorplans/' + this.id + '.png'),
                         imageExtent: imageExtent
                     })
                 }),
@@ -30,9 +30,7 @@ export default {
                     renderMode: 'hybrid',
                     source: new ol.source.Vector({
                         format: new ol.format.GeoJSON(),
-                        loader: () => {
-                            return require('../../assets/floor' + this.id + '.json')
-                        }
+                        url: require('../../assets/floorplans/' + this.id + '.geojson')
                     })
                 })
             ],
@@ -42,6 +40,12 @@ export default {
                 zoom: 16.85
             })
         })
+
+        var selectPointerMove = new ol.interaction.Select({
+            condition: ol.events.condition.pointerMove
+        })
+
+        map.addInteraction(selectPointerMove)
     }
 }
 </script>
