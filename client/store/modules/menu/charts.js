@@ -20,6 +20,14 @@ export default {
       }
     },
     {
+      name: 'Temperature',
+      path: 'temperature',
+      component: lazyLoading('charts/Temperature'),
+      meta: {
+        link: 'charts/Temperature.vue'
+      }
+    },
+    {
       name: 'Chartjs',
       path: 'chartjs',
       component: lazyLoading('charts/Chartjs'),

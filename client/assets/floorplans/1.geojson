@@ -1,8 +1,11 @@
 {
   "type": "FeatureCollection",
   "features": [{
+    "id": "S121B",
     "type": "Feature",
-    "properties": {},
+    "properties": {
+      "name": "S121B"
+    },
     "geometry": {
       "type": "Polygon",
       "coordinates": [

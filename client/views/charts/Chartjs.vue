@@ -132,7 +132,7 @@ export default {
       }
       data.datasets = this.series.map((e, i) => {
         return {
-          data: this.data_3[i],
+          data: this.data[i],
           label: this.series[i],
           borderColor: this.backgroundColor_3[i].replace(/1\)$/, '.5)'),
           pointBackgroundColor: this.backgroundColor_3[i],

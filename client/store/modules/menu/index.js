@@ -1,9 +1,9 @@
 import * as types from '../../mutation-types'
 import lazyLoading from './lazyLoading'
-/* import charts from './charts'
+import charts from './charts'
 import uifeatures from './uifeatures'
 import components from './components'
-import tables from './tables' */
+import tables from './tables'
 
 // show: meta.label -> name
 // name: component name
@@ -11,14 +11,14 @@ import tables from './tables' */
 
 const state = {
   items: [{
-      name: 'Dashboard',
-      path: '/',
-      meta: {
-        icon: 'fa-tachometer',
-        link: 'dashboard/index.vue'
-      },
-      component: lazyLoading('dashboard', true)
+    name: 'Dashboard',
+    path: '/',
+    meta: {
+      icon: 'fa-tachometer',
+      link: 'dashboard/index.vue'
     },
+    component: lazyLoading('dashboard', true)
+  },
     {
       name: 'Floors',
       path: '/floors',
@@ -45,27 +45,26 @@ const state = {
         link: 'measurements/index.vue'
       },
       component: lazyLoading('measurements', true)
-    }
-    /* ,
-       {
-         name: 'Axios',
-         path: '/axiosDemo',
-         meta: {
-           auth: true,
-           icon: 'fa-rocket',
-           link: 'axios/index.vue'
-         },
-         component: lazyLoading('axios', true)
-       },
-        charts,
-       uifeatures,
-       components,
-       tables */
+    },
+    {
+      name: 'Axios',
+      path: '/axiosDemo',
+      meta: {
+        auth: true,
+        icon: 'fa-rocket',
+        link: 'axios/index.vue'
+      },
+      component: lazyLoading('axios', true)
+    },
+    charts,
+    uifeatures,
+    components,
+    tables
   ]
 }
 
 const mutations = {
-  [types.EXPAND_MENU](state, menuItem) {
+  [types.EXPAND_MENU] (state, menuItem) {
     if (menuItem.index > -1) {
       if (state.items[menuItem.index] && state.items[menuItem.index].meta) {
         state.items[menuItem.index].meta.expanded = menuItem.expanded
