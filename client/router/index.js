@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import menuModule from 'vuex-store/modules/menu'
 import Room from '../views/rooms/Room'
 import Floor from '../views/floors/Floor'
+
 Vue.use(Router)
 
 export default new Router({
@@ -19,7 +20,7 @@ export default new Router({
     },
     {
       name: 'Room',
-      path: '/room/:id',
+      path: '/room/:_id',
       component: Room,
       props: true
     }, {
@@ -32,7 +33,7 @@ export default new Router({
 })
 
 // Menu should have 2 levels.
-function generateRoutesFromMenu(menu = [], routes = []) {
+function generateRoutesFromMenu (menu = [], routes = []) {
   for (let i = 0, l = menu.length; i < l; i++) {
     let item = menu[i]
     if (item.path) {

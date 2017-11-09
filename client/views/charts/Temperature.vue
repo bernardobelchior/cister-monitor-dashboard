@@ -22,8 +22,7 @@
     data () {
       return {
         data: [
-          [65, 59, 90, 81, 56, 55, 40],
-          [28, 48, 40, 19, 88, 27, 45]
+          [65, 59, 90, 81, 56, 55, 40]
         ],
         options: {
           tooltips: {
@@ -31,10 +30,9 @@
           }
         },
         backgroundColor: [
-          'rgba(31, 200, 219, 1)',
-          'rgba(151, 205, 118, 1)'
+          'rgba(31, 200, 219, 1)'
         ],
-        series: ['Product A', 'Product B']
+        series: ['Product A']
       }
     },
     methods: {
@@ -72,6 +70,3 @@
     }
   }
 </script>
-
-<style scoped>
-</style>
