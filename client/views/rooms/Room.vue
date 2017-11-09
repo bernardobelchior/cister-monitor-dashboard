@@ -12,7 +12,7 @@
               </div>
               <div class="control">
                 <div class="select">
-                  <select v-model="selected.frequency.id">
+                  <select v-model="selectedFrequency.id">
                     <option v-for="frequency in frequencies" :value="frequency.id">
                       {{frequency.name}}
                     </option>
@@ -44,15 +44,13 @@
       return {
         room: {},
         frequencies: [
-          {id: 0, name: '1 month'},
-          {id: 1, name: '3 months'},
-          {id: 2, name: '6 months'},
-          {id: 3, name: '1 year'},
-          {id: 4, name: '2 years'}
+          {id: 0, name: '1 month', days: 30, leap: 1},
+          {id: 1, name: '3 months', days: 90, leap: 3},
+          {id: 2, name: '6 months', days: 180, leap: 6},
+          {id: 3, name: '1 year', days: 365, leap: 15},
+          {id: 4, name: '2 years', days: 730, leap: 30}
         ],
-        selected: {
-          frequency: {id: 0, name: '1 month'}
-        },
+        selectedFrequency: {id: 0, name: '1 month', days: 30, leap: 1},
         options: {
           tooltips: {
             mode: 'index'
@@ -69,13 +67,14 @@
       id () {
         return Number(this._id)
       },
+      // TODO: Make reactive
       labels () {
         let labels = []
         let date = new Date()
-        date.setDate(date.getDate() - 30)
-        for (let i = 30; i >= 0; i--) {
+        date.setDate(date.getDate() - this.selectedFrequency.days)
+        for (let i = this.selectedFrequency.days; i >= 0; i -= this.selectedFrequency.leap) {
           labels.push(this.formatDate(date))
-          date.setDate(date.getDate() + 1)
+          date.setDate(date.getDate() + this.selectedFrequency.leap)
         }
 
         return labels
