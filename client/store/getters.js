@@ -23,9 +23,35 @@ export const floor = (state) => (id) => {
     }
   }
 
-  let floor = {
+  return {
     id: id
   }
-  state.floors.push(floor)
-  return floor
+}
+
+export const rooms = state => state.rooms
+
+export const room = (state) => (id) => {
+  for (let room of state.rooms) {
+    if (room.id === id) {
+      return room
+    }
+  }
+
+  return {
+    id: id,
+    name: ''
+  }
+}
+
+export const roomStatistics = (state) => (id) => {
+  for (let roomStatistics of state.roomsStatistics) {
+    if (roomStatistics.id === id) {
+      return roomStatistics
+    }
+  }
+
+  return {
+    id: id,
+    stats: []
+  }
 }

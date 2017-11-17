@@ -16,8 +16,8 @@ export default {
   },
   methods: {
     createMap: function() {
-      var imageExtent = [0, 0, 1259, 404];
-      var map = new ol.Map({
+      const imageExtent = [0, 0, 1259, 404]
+      let map = new ol.Map({
         layers: [
           new ol.layer.Image({
             source: new ol.source.ImageStatic({
@@ -44,9 +44,9 @@ export default {
         })
       });
 
-      var selectPointerMove = new ol.interaction.Select({
+      const selectPointerMove = new ol.interaction.Select({
         condition: ol.events.condition.pointerMove
-      });
+      })
 
       map.addInteraction(selectPointerMove);
     }

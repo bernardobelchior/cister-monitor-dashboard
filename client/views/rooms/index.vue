@@ -1,12 +1,11 @@
 <template>
   <div class="components">
     <div class="columns is-multiline is-mobile">
-
       <div class="column is-half-mobile is-one-third-tablet is-one-third-desktop" v-for="room in rooms"
            v-bind:key="room.id">
         <base-card :title="room.name" :content="'Floor: ' + room.floor_id">
           <card-footer-item slot="footer">
-            <router-link :to="{name: 'Room', params: {_id: room.id, room: room}}">
+            <router-link :to="{name: 'Room', params: {id: room.id}}">
               <span class="icon is-small">
                 <i aria-hidden="true" class="fa fa-link"></i>
               </span>&nbsp;&nbsp; Statistics
@@ -20,7 +19,6 @@
 </template>
 
 <script>
-  import axios from 'axios'
   import { BaseCard, CardFooterItem } from 'vue-bulma-card'
 
   export default {
@@ -28,17 +26,13 @@
       BaseCard,
       CardFooterItem
     },
-    data () {
-      return {
-        rooms: []
+    computed: {
+      rooms () {
+        return Array.from(this.$store.getters.rooms)
       }
     },
-    mounted () {
-      axios.get(process.env.HOST_URL + '/rooms').then((response) => {
-        this.$set(this, 'rooms', response.data.results)
-      }).catch((error) => {
-        console.log(error)
-      })
+    created () {
+      this.$store.dispatch('fetchRooms')
     }
   }
 </script>

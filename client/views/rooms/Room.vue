@@ -21,7 +21,6 @@
               </div>
             </div>
           </div>
-
           <chart :type="'line'" :data="seriesData" :options="options"></chart>
         </article>
       </div>
@@ -30,7 +29,6 @@
 </template>
 
 <script>
-  import axios from 'axios'
   import Chart from 'vue-bulma-chartjs'
 
   export default {
@@ -38,11 +36,10 @@
       Chart
     },
     props: [
-      '_id'
+      'id'
     ],
     data: function () {
       return {
-        room: {},
         frequencies: [
           {id: 0, name: '1 month', days: 30, leap: 1},
           {id: 1, name: '3 months', days: 90, leap: 3},
@@ -56,7 +53,6 @@
             mode: 'index'
           }
         },
-        data: [5, 1, 2, 4, 4],
         label: 'Temperature (ºC)',
         borderColor: 'rgba(31, 200, 219, .5)',
         pointBackgroundColor: 'rgba(31, 200, 219, 1)',
@@ -64,26 +60,14 @@
       }
     },
     computed: {
-      id () {
-        return Number(this._id)
-      },
-      // TODO: Make reactive
-      labels () {
-        let labels = []
-        let date = new Date()
-        date.setDate(date.getDate() - this.selectedFrequency.days)
-        for (let i = this.selectedFrequency.days; i >= 0; i -= this.selectedFrequency.leap) {
-          labels.push(this.formatDate(date))
-          date.setDate(date.getDate() + this.selectedFrequency.leap)
-        }
-
-        return labels
+      room () {
+        return this.$store.getters.room(this.id)
       },
       seriesData: function () {
         return {
-          labels: this.labels,
+          labels: this.$store.getters.roomStatistics(this.id).stats.map((roomStats) => this.formatDate(new Date(roomStats.date))),
           datasets: [{
-            data: this.data,
+            data: this.$store.getters.roomStatistics(this.id).stats.map((roomStats) => roomStats.temperature),
             label: this.label,
             borderColor: this.borderColor,
             pointBackgroundColor: this.pointBackgroundColor,
@@ -93,11 +77,11 @@
       }
     },
     created () {
-      if (this.room.id === undefined) {
-        axios.get(process.env.HOST_URL + '/room/' + this.id)
-          .then((response) => this.$set(this, 'room', response.data.results[0]))
-          .catch((error) => console.log(error))
-      }
+      this.$store.dispatch('fetchRoom', this.id)
+      this.$store.dispatch('fetchRoomStatistics', this.id)
+    },
+    updated () {
+      // TODO: Force chart update
     },
     methods: {
       formatDate (date) {
