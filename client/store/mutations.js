@@ -1,3 +1,6 @@
+import Vue from 'vue'
+import formatDate from './utils.js'
+
 export const
   setFloors = (state, floors) => {
     state.floors = floors
@@ -32,15 +35,34 @@ export const
     state.rooms.push(newRoom)
   }
 
+export const initRoomStatistics = (state, _id) => {
+  const id = parseInt(_id)
+  for (let roomStatistics of state.roomsStatistics) {
+    if (roomStatistics.id === id) {
+      return
+    }
+  }
+
+  state.roomsStatistics.push({
+    id: id,
+    humidity: [],
+    temperature: [],
+    labels: []
+  })
+}
+
 export const
   setRoomStatistics = (state, newRoomStatistics) => {
     for (let roomStatistics of state.roomsStatistics) {
       if (roomStatistics.id === newRoomStatistics.id) {
-        roomStatistics = newRoomStatistics
-        roomStatistics.stats.reverse()
+        Vue.set(roomStatistics, 'labels', newRoomStatistics.stats.map((obj) => formatDate(new Date(obj.date))))
+        Vue.set(roomStatistics, 'temperature', newRoomStatistics.stats.map((obj) => obj.temperature))
         return
       }
     }
 
+    newRoomStatistics.labels = newRoomStatistics.stats.map((obj) => formatDate(new Date(obj.date)))
+    newRoomStatistics.temperature = newRoomStatistics.stats.map((obj) => obj.temperature)
+    delete newRoomStatistics.stats
     state.roomsStatistics.push(newRoomStatistics)
   }

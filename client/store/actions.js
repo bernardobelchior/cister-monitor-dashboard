@@ -48,6 +48,6 @@ export const fetchRoom = ({commit}, id) => {
 
 export const fetchRoomStatistics = ({commit}, id) => {
   axios.get(process.env.HOST_URL + '/statistics/room/' + id)
-    .then((response) => commit('setRoomStatistics', {id: id, stats: response.data}))
+    .then((response) => commit('setRoomStatistics', {id: parseInt(id), stats: response.data}))
     .catch((error) => console.log(error))
 }
