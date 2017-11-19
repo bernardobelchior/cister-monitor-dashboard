@@ -53,12 +53,35 @@
         options: {
           tooltips: {
             mode: 'index'
+          },
+          scales: {
+            yAxes: [{
+              position: 'left',
+              id: 'temperature-axis',
+              scaleLabel: {
+                display: true,
+                labelString: 'Temperature (ºC)'
+              }
+            }, {
+              beginAtZero: true,
+              position: 'right',
+              id: 'humidity-axis',
+              scaleLabel: {
+                display: true,
+                labelString: 'Humidity (%)'
+              },
+              ticks: {
+                min: 0,
+                max: 100
+              }
+            }
+            ]
           }
         },
         labels: ['Temperature (ºC)', 'Humidity'],
-        borderColors: ['rgba(31, 200, 219, .5)', 'rgba(151, 205, 118, .5)'],
-        pointBackgroundColors: ['rgba(31, 200, 219, 1)', 'rgba(151, 205, 118, 1)'],
-        backgroundColors: ['rgba(31, 200, 219, .5)', 'rgba(151, 205, 118, .5)']
+        borderColors: ['rgba(245, 85, 85, .5)', 'rgba(31, 200, 219, .5)'],
+        pointBackgroundColors: ['rgba(245, 85, 85, 1)', 'rgba(31, 200, 219, 1)'],
+        backgroundColors: ['rgba(245, 85, 85, .5)', 'rgba(31, 200, 219, .5)']
       }
     },
     beforeRouteEnter (to, from, next) {
@@ -79,13 +102,15 @@
             label: this.labels[0],
             borderColor: this.borderColors[0],
             pointBackgroundColor: this.pointBackgroundColors[0],
-            backgroundColor: this.backgroundColors[0]
+            backgroundColor: this.backgroundColors[0],
+            yAxisID: 'temperature-axis'
           }, {
             data: this.$store.getters.roomHumidity(this.id),
             label: this.labels[1],
             borderColor: this.borderColors[1],
             pointBackgroundColor: this.pointBackgroundColors[1],
-            backgroundColor: this.backgroundColors[1]
+            backgroundColor: this.backgroundColors[1],
+            yAxisID: 'humidity-axis'
           }]
         }
       }
