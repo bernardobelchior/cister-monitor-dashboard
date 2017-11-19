@@ -1,65 +1,88 @@
 <template>
-    <div id="map">
-
+  <div class="tile is-ancestor is-full-tablet is-half-desktop">
+    <div class="tile is-parent">
+      <article class="tile is-child box">
+        <h1 class="title"> {{ floorName }} </h1>
+        <div :id="floor.id"></div>
+      </article>
     </div>
+  </div>
 </template>
 
 <script>
-import ol from "openlayers";
+  import ol from 'openlayers'
 
-export default {
-  props: ["id"],
-  computed: {
-    floor() {
-      return this.$store.getters.floor(this.id);
-    }
-  },
-  methods: {
-    createMap: function() {
-      const imageExtent = [0, 0, 1259, 404]
-      let map = new ol.Map({
-        layers: [
-          new ol.layer.Image({
-            source: new ol.source.ImageStatic({
-              url: require("../../assets/floorplans/" +
-                this.floor.floor_no +
-                ".png"),
-              imageExtent: imageExtent
+  export default {
+    props: ['floor'],
+    computed: {
+      floorName: function () {
+        let floorName = this.floor.floor_no + ''
+
+        switch (this.floor.floor_no) {
+          case 1:
+            floorName += 'st'
+            break
+          case 2:
+            floorName += 'nd'
+            break
+          case 3:
+            floorName += 'rd'
+            break
+          default:
+            floorName += 'th'
+            break
+        }
+
+        floorName += ' floor'
+        return floorName
+      }
+    },
+    methods: {
+      createMap: function () {
+        const imageExtent = [0, 0, 1259, 404]
+        let map = new ol.Map({
+          layers: [
+            new ol.layer.Image({
+              source: new ol.source.ImageStatic({
+                url: require('../../assets/floorplans/' +
+                  this.floor.floor_no +
+                  '.png'),
+                imageExtent: imageExtent
+              })
+            }),
+            new ol.layer.Vector({
+              renderMode: 'hybrid',
+              source: new ol.source.Vector({
+                format: new ol.format.GeoJSON(),
+                url: require('../../assets/floorplans/' +
+                  this.floor.floor_no +
+                  '.geojson')
+              })
             })
+          ],
+          target: this.floor.id + '',
+          view: new ol.View({
+            center: ol.extent.getCenter(imageExtent),
+            zoom: 16.85
           }),
-          new ol.layer.Vector({
-            renderMode: "hybrid",
-            source: new ol.source.Vector({
-              format: new ol.format.GeoJSON(),
-              url: require("../../assets/floorplans/" +
-                this.floor.floor_no +
-                ".geojson")
-            })
+          interactions: ol.interaction.defaults({
+            mouseWheelZoom: false
           })
-        ],
-        target: "map",
-        view: new ol.View({
-          center: ol.extent.getCenter(imageExtent),
-          zoom: 16.85
         })
-      });
 
-      const selectPointerMove = new ol.interaction.Select({
-        condition: ol.events.condition.pointerMove
-      })
+        const selectPointerMove = new ol.interaction.Select({
+          condition: ol.events.condition.pointerMove
+        })
 
-      map.addInteraction(selectPointerMove);
+        map.addInteraction(selectPointerMove)
+      }
+    },
+    mounted () {
+      this.createMap()
     }
-  },
-  created() {
-    this.$store.dispatch("fetchFloor", this.id);
-  },
-  mounted() {
-    this.createMap();
   }
-};
 </script>
 
 <style scoped>
-@import "../../../node_modules/openlayers/dist/ol.css";
+  @import "../../../node_modules/openlayers/dist/ol.css";
 </style>

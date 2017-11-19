@@ -7,18 +7,6 @@ export const
   }
 
 export const
-  setFloor = (state, newFloor) => {
-    for (let floor of state.floors) {
-      if (floor.id === newFloor.id) {
-        floor = newFloor
-        return
-      }
-    }
-
-    state.floors.push(newFloor)
-  }
-
-export const
   setRooms = (state, rooms) => {
     state.rooms = rooms
   }
@@ -57,12 +45,14 @@ export const
       if (roomStatistics.id === newRoomStatistics.id) {
         Vue.set(roomStatistics, 'labels', newRoomStatistics.stats.map((obj) => formatDate(new Date(obj.date))))
         Vue.set(roomStatistics, 'temperature', newRoomStatistics.stats.map((obj) => obj.temperature))
+        Vue.set(roomStatistics, 'humidity', newRoomStatistics.stats.map((obj) => obj.humidity))
         return
       }
     }
 
     newRoomStatistics.labels = newRoomStatistics.stats.map((obj) => formatDate(new Date(obj.date)))
     newRoomStatistics.temperature = newRoomStatistics.stats.map((obj) => obj.temperature)
+    newRoomStatistics.humidity = newRoomStatistics.stats.map((obj) => obj.humidity)
     delete newRoomStatistics.stats
     state.roomsStatistics.push(newRoomStatistics)
   }

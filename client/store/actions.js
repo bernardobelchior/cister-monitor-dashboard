@@ -28,12 +28,6 @@ export const fetchFloors = ({commit}) => {
     .catch((error) => console.log(error))
 }
 
-export const fetchFloor = ({commit}, id) => {
-  axios.get(process.env.HOST_URL + '/floor/' + id)
-    .then((response) => commit('setFloor', response.data[0]))
-    .catch((error) => console.log(error))
-}
-
 export const fetchRooms = ({commit}) => {
   axios.get(process.env.HOST_URL + '/rooms')
     .then((response) => commit('setRooms', response.data))

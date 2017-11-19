@@ -16,18 +16,6 @@ export const componententry = state => {
 
 export const floors = state => state.floors
 
-export const floor = (state) => (id) => {
-  for (let floor of state.floors) {
-    if (floor.id === id) {
-      return floor
-    }
-  }
-
-  return {
-    id: id
-  }
-}
-
 export const rooms = state => state.rooms
 
 export const room = (state) => (id) => {
