@@ -20,19 +20,21 @@
 
 <script>
   import { BaseCard, CardFooterItem } from 'vue-bulma-card'
+  import store from '../../store/index.js'
 
   export default {
     components: {
       BaseCard,
       CardFooterItem
     },
+    beforeRouteEnter (to, from, next) {
+      store.dispatch('fetchRooms')
+      next()
+    },
     computed: {
       rooms () {
         return Array.from(this.$store.getters.rooms)
       }
-    },
-    created () {
-      this.$store.dispatch('fetchRooms')
     }
   }
 </script>

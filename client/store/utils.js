@@ -1,3 +1,3 @@
 export default function formatDate (date) {
-  return date.getDate() + '/' + (date.getMonth() + 1)
+  return date.toLocaleDateString('en-US', {day: '2-digit', month: 'short', year: 'numeric'})
 }

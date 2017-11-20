@@ -40,8 +40,8 @@ export const fetchRoom = ({commit}, id) => {
     .catch((error) => console.log(error))
 }
 
-export const fetchRoomStatistics = ({commit}, id) => {
-  axios.get(process.env.HOST_URL + '/statistics/room/' + id)
-    .then((response) => commit('setRoomStatistics', {id: parseInt(id), stats: response.data}))
+export const fetchRoomStatistics = ({commit}, options) => {
+  axios.get(process.env.HOST_URL + '/statistics/room/' + options.id, {params: options.params})
+    .then((response) => commit('setRoomStatistics', {id: parseInt(options.id), stats: response.data}))
     .catch((error) => console.log(error))
 }

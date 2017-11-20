@@ -12,7 +12,7 @@
               </div>
               <div class="control">
                 <div class="select">
-                  <select v-model="selectedFrequency.id">
+                  <select v-on:change="updateFrequency" v-model="selectedFrequency.id">
                     <option v-for="frequency in frequencies" :value="frequency.id">
                       {{frequency.name}}
                     </option>
@@ -21,7 +21,7 @@
               </div>
             </div>
           </div>
-          <chart :type="'line'" :data="seriesData" :options="options"></chart>
+          <chart ref="chart" :type="'line'" :data="seriesData" :options="options"></chart>
         </article>
       </div>
     </div>
@@ -42,14 +42,18 @@
     data: function () {
       return {
         frequencies: [
-          {id: 0, name: '1 month', days: 30, leap: 1},
-          {id: 1, name: '3 months', days: 90, leap: 3},
-          {id: 2, name: '6 months', days: 180, leap: 6},
-          {id: 3, name: '1 year', days: 365, leap: 15},
-          {id: 4, name: '2 years', days: 730, leap: 30},
-          {id: 5, name: 'all time', days: 0, leap: 0}
+          {id: 0, name: '7 days', time: 'day', num: 7},
+          {id: 1, name: '15 days', time: 'day', num: 15},
+          {id: 2, name: '1 month', time: 'month', num: 1},
+          {id: 3, name: '3 months', time: 'month', num: 3},
+          {id: 4, name: '6 months', time: 'month', num: 6},
+          {id: 5, name: '1 year', time: 'year', num: 1},
+          {id: 6, name: '2 years', time: 'year', num: 2},
+          {id: 7, name: '5 years', time: 'year', num: 5},
+          {id: 8, name: '10 years', time: 'year', num: 10},
+          {id: 9, name: 'all time', time: 'all'}
         ],
-        selectedFrequency: {id: 0, name: '1 month', days: 30, leap: 1},
+        selectedFrequency: {id: 2, name: '1 month', time: 'month', num: 1},
         options: {
           tooltips: {
             mode: 'index'
@@ -87,25 +91,34 @@
     beforeRouteEnter (to, from, next) {
       store.dispatch('fetchRoom', to.params.id)
       store.commit('initRoomStatistics', to.params.id)
-      store.dispatch('fetchRoomStatistics', to.params.id)
+      store.dispatch('fetchRoomStatistics', {id: to.params.id})
       next()
     },
     computed: {
       room () {
         return this.$store.getters.room(this.id)
       },
+      roomLabels () {
+        return this.$store.getters.roomLabels(this.id)
+      },
+      roomTemperature () {
+        return this.$store.getters.roomTemperature(this.id)
+      },
+      roomHumidity () {
+        return this.$store.getters.roomHumidity(this.id)
+      },
       seriesData: function () {
-        return {
-          labels: this.$store.getters.roomLabels(this.id),
+        let data = {
+          labels: this.roomLabels,
           datasets: [{
-            data: this.$store.getters.roomTemperature(this.id),
+            data: this.roomTemperature,
             label: this.labels[0],
             borderColor: this.borderColors[0],
             pointBackgroundColor: this.pointBackgroundColors[0],
             backgroundColor: this.backgroundColors[0],
             yAxisID: 'temperature-axis'
           }, {
-            data: this.$store.getters.roomHumidity(this.id),
+            data: this.roomHumidity,
             label: this.labels[1],
             borderColor: this.borderColors[1],
             pointBackgroundColor: this.pointBackgroundColors[1],
@@ -113,9 +126,27 @@
             yAxisID: 'humidity-axis'
           }]
         }
+
+        if (this.$refs.chart) {
+          this.$nextTick(() => {
+            this.$refs.chart.resetChart()
+          })
+        }
+
+        return data
       }
     },
-    created () {
+    methods: {
+      updateFrequency: function () {
+        const id = this.selectedFrequency.id
+        store.dispatch('fetchRoomStatistics', {
+          id: this.room.id,
+          params: {
+            time: this.frequencies[id].time,
+            num: this.frequencies[id].num
+          }
+        })
+      }
     }
   }
 </script>
