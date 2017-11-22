@@ -23,6 +23,7 @@
     },
     created () {
       this.$store.dispatch('fetchFloors')
+      this.$store.dispatch('fetchRoomsConditions')
     }
   }
 </script>

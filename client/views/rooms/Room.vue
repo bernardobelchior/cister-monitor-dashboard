@@ -99,13 +99,13 @@
         return this.$store.getters.room(this.id)
       },
       roomLabels () {
-        return this.$store.getters.roomLabels(this.id)
+        return this.$store.getters.roomChartLabels(this.id)
       },
       roomTemperature () {
-        return this.$store.getters.roomTemperature(this.id)
+        return this.$store.getters.roomTemperatureValues(this.id)
       },
       roomHumidity () {
-        return this.$store.getters.roomHumidity(this.id)
+        return this.$store.getters.roomHumidityValues(this.id)
       },
       seriesData: function () {
         let data = {

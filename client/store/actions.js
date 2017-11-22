@@ -45,3 +45,9 @@ export const fetchRoomStatistics = ({commit}, options) => {
     .then((response) => commit('setRoomStatistics', {id: parseInt(options.id), stats: response.data}))
     .catch((error) => console.log(error))
 }
+
+export const fetchRoomsConditions = ({commit}) => {
+  axios.get(process.env.HOST_URL + '/measurements/last/')
+    .then((response) => commit('setRoomsConditions', response.data))
+    .catch((error) => console.log(error))
+}

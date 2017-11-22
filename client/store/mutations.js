@@ -39,20 +39,24 @@ export const initRoomStatistics = (state, _id) => {
   })
 }
 
-export const
-  setRoomStatistics = (state, newRoomStatistics) => {
-    for (let roomStatistics of state.roomsStatistics) {
-      if (roomStatistics.id === newRoomStatistics.id) {
-        Vue.set(roomStatistics, 'labels', newRoomStatistics.stats.map((obj) => formatDate(new Date(obj.date))))
-        Vue.set(roomStatistics, 'temperature', newRoomStatistics.stats.map((obj) => obj.temperature))
-        Vue.set(roomStatistics, 'humidity', newRoomStatistics.stats.map((obj) => obj.humidity))
-        return
-      }
+export const setRoomStatistics = (state, newRoomStatistics) => {
+  for (let roomStatistics of state.roomsStatistics) {
+    if (roomStatistics.id === newRoomStatistics.id) {
+      Vue.set(roomStatistics, 'labels', newRoomStatistics.stats.map((obj) => formatDate(new Date(obj.date))))
+      Vue.set(roomStatistics, 'temperature', newRoomStatistics.stats.map((obj) => obj.temperature))
+      Vue.set(roomStatistics, 'humidity', newRoomStatistics.stats.map((obj) => obj.humidity))
+      Vue.set(roomStatistics, 'shortName', newRoomStatistics.shortName)
+      return
     }
-
-    newRoomStatistics.labels = newRoomStatistics.stats.map((obj) => formatDate(new Date(obj.date)))
-    newRoomStatistics.temperature = newRoomStatistics.stats.map((obj) => obj.temperature)
-    newRoomStatistics.humidity = newRoomStatistics.stats.map((obj) => obj.humidity)
-    delete newRoomStatistics.stats
-    state.roomsStatistics.push(newRoomStatistics)
   }
+
+  newRoomStatistics.labels = newRoomStatistics.stats.map((obj) => formatDate(new Date(obj.date)))
+  newRoomStatistics.temperature = newRoomStatistics.stats.map((obj) => obj.temperature)
+  newRoomStatistics.humidity = newRoomStatistics.stats.map((obj) => obj.humidity)
+  delete newRoomStatistics.stats
+  state.roomsStatistics.push(newRoomStatistics)
+}
+
+export const setRoomsConditions = (state, roomsConditions) => {
+  state.roomsConditions = roomsConditions
+}

@@ -31,7 +31,7 @@ export const room = (state) => (id) => {
   }
 }
 
-export const roomTemperature = (state) => (id) => {
+export const roomTemperatureValues = (state) => (id) => {
   for (let roomStatistics of state.roomsStatistics) {
     if (roomStatistics.id === id) {
       return roomStatistics.temperature
@@ -39,7 +39,7 @@ export const roomTemperature = (state) => (id) => {
   }
 }
 
-export const roomHumidity = (state) => (id) => {
+export const roomHumidityValues = (state) => (id) => {
   for (let roomStatistics of state.roomsStatistics) {
     if (roomStatistics.id === id) {
       return roomStatistics.humidity
@@ -47,10 +47,14 @@ export const roomHumidity = (state) => (id) => {
   }
 }
 
-export const roomLabels = (state) => (id) => {
+export const roomChartLabels = (state) => (id) => {
   for (let roomStatistics of state.roomsStatistics) {
     if (roomStatistics.id === id) {
       return roomStatistics.labels
     }
   }
+}
+
+export const roomCurrentConditions = (state) => (name) => {
+  return state.roomsConditions
 }

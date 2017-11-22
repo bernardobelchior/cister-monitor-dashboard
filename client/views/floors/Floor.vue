@@ -14,6 +14,29 @@
 
   export default {
     props: ['floor'],
+    data () {
+      return {
+        style: new ol.style.Style({
+          fill: new ol.style.Fill({
+            color: 'rgba(255, 255, 255, 0.6)'
+          }),
+          stroke: new ol.style.Stroke({
+            color: '#319FD3',
+            width: 1
+          }),
+          text: new ol.style.Text({
+            font: '12px Calibri,sans-serif',
+            fill: new ol.style.Fill({
+              color: '#000'
+            }),
+            stroke: new ol.style.Stroke({
+              color: '#fff',
+              width: 3
+            })
+          })
+        })
+      }
+    },
     computed: {
       floorName: function () {
         let floorName = this.floor.floor_no + ''
@@ -35,12 +58,24 @@
 
         floorName += ' floor'
         return floorName
+      },
+      roomsCondition () {
+        return this.$store.getters.roomCurrentConditions()
       }
     },
     methods: {
+      roomConditions (name) {
+        for (let roomConditions of this.roomsCondition) {
+          if (roomConditions.shortName === name) {
+            return roomConditions
+          }
+        }
+      },
       createMap: function () {
         const imageExtent = [0, 0, 1259, 404]
-        let map = new ol.Map({
+        const self = this
+
+        this.map = new ol.Map({
           layers: [
             new ol.layer.Image({
               source: new ol.source.ImageStatic({
@@ -57,7 +92,16 @@
                 url: require('../../assets/floorplans/' +
                   this.floor.floor_no +
                   '.geojson')
-              })
+              }),
+              style: (feature) => {
+                const conditions = self.roomConditions(feature.get('name'))
+                if (conditions) {
+                  self.style.getText().setText(feature.get('name') + '\nTemp: ' + conditions.temperature + 'ºC\nHum: ' + conditions.humidity + '%')
+                } else {
+                  self.style.getText().setText(feature.get('name'))
+                }
+                return self.style
+              }
             })
           ],
           target: this.floor.id + '',
@@ -69,16 +113,18 @@
             mouseWheelZoom: false
           })
         })
-
-        const selectPointerMove = new ol.interaction.Select({
-          condition: ol.events.condition.pointerMove
-        })
-
-        map.addInteraction(selectPointerMove)
       }
     },
     mounted () {
       this.createMap()
+    },
+    watch: {
+      roomsConditions () {
+        console.log('hi')
+        if (this.map) {
+          this.map.render()
+        }
+      }
     }
   }
 </script>

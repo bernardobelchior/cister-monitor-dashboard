@@ -22,7 +22,8 @@ const store = new Vuex.Store({
     pkg,
     floors: [],
     rooms: [],
-    roomsStatistics: []
+    roomsStatistics: [],
+    roomsConditions: []
   },
   mutations
 })
