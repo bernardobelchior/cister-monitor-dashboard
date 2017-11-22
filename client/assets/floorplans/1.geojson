@@ -1,21 +1,39 @@
 {
   "type": "FeatureCollection",
   "features": [{
-    "id": "S121B",
+    "id": "WC",
     "type": "Feature",
     "properties": {
-      "name": "S121B"
+      "name": "WC"
     },
     "geometry": {
       "type": "Polygon",
       "coordinates": [
         [
           [0, 0.00255],
-          [0, 0.0036],
-          [0.00158, 0.0036],
+          [0, 0.00362],
+          [0.00158, 0.00362],
           [0.00158, 0.00255]
         ]
       ]
     }
-  }]
+  }, {
+    "id": "S101",
+    "type": "Feature",
+    "properties": {
+      "name": "S101"
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [0.00188, 0.00146],
+          [0.00188, 0.00362],
+          [0.00377, 0.00362],
+          [0.00377, 0.00146]
+        ]
+      ]
+    }
+  }
+  ]
 }
