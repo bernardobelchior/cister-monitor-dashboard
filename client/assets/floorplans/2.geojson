@@ -1,4 +1,329 @@
 {
   "type": "FeatureCollection",
-  "features": []
+  "features": [{
+    "id": "WC",
+    "type": "Feature",
+    "properties": {
+      "name": "WC"
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [0, 0.00255],
+          [0, 0.00362],
+          [0.00158, 0.00362],
+          [0.00158, 0.00255]
+        ]
+      ]
+    }
+  }, {
+    "id": "S202",
+    "type": "Feature",
+    "properties": {
+      "name": "S202"
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [0.00189, 0.00219],
+          [0.00189, 0.00362],
+          [0.002515, 0.00362],
+          [0.002515, 0.00219]
+        ]
+      ]
+    }
+  }, {
+    "id": "S204",
+    "type": "Feature",
+    "properties": {
+      "name": "S204"
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [0.002515, 0.002555],
+          [0.002515, 0.00362],
+          [0.003775, 0.00362],
+          [0.003775, 0.002555]
+        ]
+      ]
+    }
+  }, {
+    "id": "S206",
+    "type": "Feature",
+    "properties": {
+      "name": "S206"
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [0.003775, 0.002555],
+          [0.003775, 0.00362],
+          [0.004405, 0.00362],
+          [0.004405, 0.002555]
+        ]
+      ]
+    }
+  }, {
+    "id": "S208",
+    "type": "Feature",
+    "properties": {
+      "name": "S208"
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [0.004405, 0.00219],
+          [0.004405, 0.00362],
+          [0.005661, 0.00362],
+          [0.005661, 0.00219]
+        ]
+      ]
+    }
+  }, {
+    "id": "S210A",
+    "type": "Feature",
+    "properties": {
+      "name": "S210A"
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [0.005661, 0.00219],
+          [0.005661, 0.00362],
+          [0.00629, 0.00362],
+          [0.00629, 0.00219]
+        ]
+      ]
+    }
+  }, {
+    "id": "S210",
+    "type": "Feature",
+    "properties": {
+      "name": "S210"
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [0.00629, 0.00219],
+          [0.00629, 0.00362],
+          [0.00818, 0.00362],
+          [0.00818, 0.00219]
+        ]
+      ]
+    }
+  }, {
+    "id": "S207A",
+    "type": "Feature",
+    "properties": {
+      "name": "S207A"
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [0.006925, 0.00146],
+          [0.006925, 0.000015],
+          [0.00755, 0.000015],
+          [0.00755, 0.00146]
+        ]
+      ]
+    }
+  }, {
+    "id": "S209",
+    "type": "Feature",
+    "properties": {
+      "name": "S209"
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [0.008175, 0.00146],
+          [0.008175, 0.000015],
+          [0.00755, 0.000015],
+          [0.00755, 0.00146]
+        ]
+      ]
+    }
+  }, {
+    "id": "S201",
+    "type": "Feature",
+    "properties": {
+      "name": "S201"
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [0.00189, 0.000015],
+          [0.00189, 0.001455],
+          [0.00283, 0.001455],
+          [0.00283, 0.000015]
+        ]
+      ]
+    }
+  }, {
+    "id": "S203",
+    "type": "Feature",
+    "properties": {
+      "name": "S203"
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [0.003775, 0.000375],
+          [0.003775, 0.001455],
+          [0.00283, 0.001455],
+          [0.00283, 0.000375]
+        ]
+      ]
+    }
+  }, {
+    "id": "S205",
+    "type": "Feature",
+    "properties": {
+      "name": "S205"
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [0.003775, 0.000015],
+          [0.003775, 0.001455],
+          [0.00503, 0.001455],
+          [0.00503, 0.000015]
+        ]
+      ]
+    }
+  }, {
+    "id": "S207",
+    "type": "Feature",
+    "properties": {
+      "name": "S207"
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [0.00503, 0.000015],
+          [0.00503, 0.001455],
+          [0.006925, 0.001455],
+          [0.006925, 0.000015]
+        ]
+      ]
+    }
+  }, {
+    "id": "S211",
+    "type": "Feature",
+    "properties": {
+      "name": "S211"
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [0.00881, 0.001455],
+          [0.00881, 0.000015],
+          [0.01006, 0.000015],
+          [0.01006, 0.001455]
+        ]
+      ]
+    }
+  }, {
+    "id": "S213",
+    "type": "Feature",
+    "properties": {
+      "name": "S213"
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [0.01006, 0.000915],
+          [0.01006, 0.001275],
+          [0.0107, 0.001275],
+          [0.0107, 0.000915]
+        ]
+      ]
+    }
+  }, {
+    "id": "S213A",
+    "type": "Feature",
+    "properties": {
+      "name": "S213A"
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [0.01006, 0.000915],
+          [0.01006, 0.000015],
+          [0.0107, 0.000015],
+          [0.0107, 0.000915]
+        ]
+      ]
+    }
+  }, {
+    "id": "S213B",
+    "type": "Feature",
+    "properties": {
+      "name": "S213B"
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [0.01131, 0.001274],
+          [0.01131, 0.000015],
+          [0.0107, 0.000015],
+          [0.0107, 0.001274]
+        ]
+      ]
+    }
+  }, {
+    "id": "S212",
+    "type": "Feature",
+    "properties": {
+      "name": "S212"
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [0.00944, 0.002375],
+          [0.00944, 0.00362],
+          [0.01069, 0.00362],
+          [0.01069, 0.002375]
+        ]
+      ]
+    }
+  }, {
+    "id": "S212A",
+    "type": "Feature",
+    "properties": {
+      "name": "S212A"
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [0.01069, 0.00255],
+          [0.01069, 0.00362],
+          [0.01130, 0.00362],
+          [0.01130, 0.00255]
+        ]
+      ]
+    }
+  }
+  ]
 }
+
