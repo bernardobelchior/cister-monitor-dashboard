@@ -2,12 +2,12 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import menuModule from 'vuex-store/modules/menu'
 import Room from '../views/rooms/Room'
-import Floor from '../views/floors/Floor'
+import Measurements from '../views/measurements/index'
 
 Vue.use(Router)
 
 export default new Router({
-  mode: 'hash', // Demo is living in GitHub.io, so required!
+  mode: 'history', // Demo is living in GitHub.io, so required!
   linkActiveClass: 'is-active',
   scrollBehavior: () => ({
     y: 0
@@ -20,14 +20,14 @@ export default new Router({
     },
     {
       name: 'Room',
-      path: '/room/:id',
+      path: '/rooms/:id',
       component: Room,
       props: true
-    }, {
-      name: 'Floor',
-      path: '/floor/:id',
-      component: Floor,
-      props: true
+    },
+    {
+      name: 'Measurements',
+      path: '/measurements',
+      component: Measurements
     }
   ]
 })

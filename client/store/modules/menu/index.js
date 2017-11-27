@@ -32,15 +32,6 @@ const state = {
         link: 'rooms/index.vue'
       },
       component: lazyLoading('rooms', true)
-    },
-    {
-      name: 'Measurements',
-      path: '/measurements',
-      meta: {
-        icon: 'fa-table',
-        link: 'measurements/index.vue'
-      },
-      component: lazyLoading('measurements', true)
     }
   ]
 }
